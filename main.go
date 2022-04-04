@@ -23,6 +23,8 @@ func main() {
     flag.Parse()
     config.InitConfig(env)
 
+    gin.SetMode(gin.ReleaseMode)
+
     // new 一个 Gin Engine 实例
     router := gin.New()
 
