@@ -30,6 +30,7 @@ func RegisterAPIRoutes(r *gin.Engine) {
 
 			//注册
 			authGroup.POST("/signup/using-phone", suc.SignupUsingPhone)
+			authGroup.POST("/signup/using-email", suc.SignupUsingEmail)
 		}
 	}
 }
