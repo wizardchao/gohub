@@ -57,6 +57,7 @@ func init() {
 		CmdMigrateRollback,
 		CmdMigrateReset,
 		CmdMigrateRefresh,
+		CmdMigrateFresh,
 	)
 }
 
@@ -69,4 +70,14 @@ func migrator() *migrate.Migrator {
 
 func runUp(cmd *cobra.Command, args []string) {
 	migrator().Up()
+}
+
+var CmdMigrateFresh = &cobra.Command{
+	Use:   "fresh",
+	Short: "Drop all tables and re-run all migrations",
+	Run:   runFresh,
+}
+
+func runFresh(cmd *cobra.Command, args []string) {
+	migrator().Fresh()
 }
