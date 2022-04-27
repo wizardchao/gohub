@@ -2,13 +2,13 @@
 package database
 
 import (
-    "database/sql"
-    "errors"
-    "fmt"
-    "gohub/pkg/config"
+	"database/sql"
+	"errors"
+	"fmt"
+	"gohub/pkg/config"
 
-    "gorm.io/gorm"
-    gormlogger "gorm.io/gorm/logger"
+	"gorm.io/gorm"
+	gormlogger "gorm.io/gorm/logger"
 )
 
 // DB 对象
@@ -100,4 +100,10 @@ func deleteMySQLTables() error {
 	// 开启 MySQL 外键检测
 	DB.Exec("SET foreign_key_checks = 1;")
 	return nil
+}
+
+func TableName(obj interface{}) string {
+	stmt := &gorm.Statement{DB: DB}
+	stmt.Parse(obj)
+	return stmt.Schema.Table
 }
